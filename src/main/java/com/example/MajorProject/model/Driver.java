@@ -20,7 +20,10 @@ public class Driver {
     private Integer driverID;
     private String name;
     private int age;
+
+    @Column(unique = true, nullable = false)
     private String emailId;
+
     Gender gender;
 
     @OneToMany

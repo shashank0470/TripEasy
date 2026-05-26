@@ -23,6 +23,9 @@ public class Customer {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
+    @Column(unique = true, nullable = false)
+    private String emailId;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_Id")
     List<Booking> booking = new ArrayList<>();
