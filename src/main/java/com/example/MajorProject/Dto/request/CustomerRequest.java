@@ -17,4 +17,5 @@ public class CustomerRequest {
     private String name;
     private int age;
     private Gender gender;
+    private String emailId;
 }

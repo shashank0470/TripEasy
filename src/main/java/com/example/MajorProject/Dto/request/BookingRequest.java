@@ -18,9 +18,6 @@ public class BookingRequest {
 
     private double trip_distance_in_Km;
 
-    private double bill_amount;
 
-    @Enumerated(value = EnumType.STRING)
-    private TripStatus trip_status;
 
 }

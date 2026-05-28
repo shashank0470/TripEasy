@@ -15,10 +15,10 @@ public class BookingTransformer {
     public static Booking BookingRequestToBooking(BookingRequest bookingRequest, double per_km_rate){
         return Booking.builder()
                 .pickup(bookingRequest.getPickup())
-                .destination(bookingRequest.getPickup())
+                .destination(bookingRequest.getDestination())
                 .trip_distance_in_Km(bookingRequest.getTrip_distance_in_Km())
                 .trip_status(TripStatus.IN_PROGRESS)
-                .bill_amount(bookingRequest.getBill_amount()*per_km_rate)
+                .bill_amount(bookingRequest.getTrip_distance_in_Km()*per_km_rate)
                 .build();
     }
 

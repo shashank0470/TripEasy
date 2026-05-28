@@ -15,12 +15,17 @@ import com.example.MajorProject.repository.CustomerRepository;
 import com.example.MajorProject.repository.DriverRepository;
 import com.example.MajorProject.transformers.BookingTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class BookingService {
+
+    @Autowired
+    JavaMailSender javaMailSender;
 
     @Autowired
     CustomerRepository customerRepository;
@@ -59,6 +64,20 @@ public class BookingService {
         Driver savedDriver = driverRepository.save(driver);
         Customer savedCustomer = customerRepository.save(customer);
 
+        sendEmail(savedCustomer);
+
         return BookingTransformer.bookingToBookingResponse(booked, savedCustomer,savedDriver, availableCab);
     }
+
+    private void sendEmail(Customer customer){
+        String text = "Congrates! " + customer.getName() + " your cab is booked";
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom("tm4811357@gmail.com");
+        simpleMailMessage.setTo(customer.getEmailId());
+        simpleMailMessage.setSubject("Cab Booked");
+        simpleMailMessage.setText(text);
+
+        javaMailSender.send(simpleMailMessage);
+    }
 }
+

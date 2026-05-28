@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DriverRepository extends JpaRepository<Driver, Integer> {
 
-    @Query(value = "select d from driver d where d.cab_Id = :cabId", nativeQuery = true)
-    Driver getDriverByCabId(@Param("cabId")int cabId);
+    @Query(value = "select * from driver d where d.cab_id = :cabId", nativeQuery = true)
+    Driver getDriverByCabId(@Param("cabId") int cabId);
 }

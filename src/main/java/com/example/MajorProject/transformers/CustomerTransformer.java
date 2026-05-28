@@ -12,6 +12,7 @@ public class CustomerTransformer {
                 .name(customerRequest.getName())
                 .age(customerRequest.getAge())
                 .gender(customerRequest.getGender())
+                .emailId(customerRequest.getEmailId())
                 .build();
         return customer;
     }
@@ -22,6 +23,7 @@ public class CustomerTransformer {
                 .name(customer.getName())
                 .age(customer.getAge())
                 .gender(customer.getGender())
+                .emailId(customer.getEmailId())
                 .build();
 
         return customerResponse;
