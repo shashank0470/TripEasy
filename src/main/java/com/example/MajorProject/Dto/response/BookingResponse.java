@@ -1,32 +1,38 @@
-package com.example.MajorProject.model;
+package com.example.MajorProject.Dto.response;
+
 
 import com.example.MajorProject.Enum.TripStatus;
-import jakarta.persistence.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.lang.reflect.GenericArrayType;
 import java.util.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
-@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Booking {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer bookingId;
+public class BookingResponse {
+
     private String pickup;
+
     private String destination;
+
     private double trip_distance_in_Km;
+
     @Enumerated(value = EnumType.STRING)
     private TripStatus trip_status;
+
     private double bill_amount;
-    @CreationTimestamp
+
     Date bookedAt;
-    @UpdateTimestamp
+
     Date lastUpdateAt;
+
+    CustomerResponse customer;
+
+    CabResponse cab;
 }
