@@ -75,11 +75,25 @@ public class CustomerService {
 
     }
 
-//    public void deleteCustomer(int customerID){
-//        if (!customerRepository.findAll(customerID)) {
-//
-//
-//        }
-//        customerRepository.deleteAll(customerID);
-//    }
+    public CustomerResponse updateCustomer(CustomerRequest customerRequest, int id) throws CustomerNotFound {
+        Optional<Customer> customer = customerRepository.findById(id);
+        if(!customer.isPresent()){
+            throw new CustomerNotFound("No customer found for id: " + id);
+        }
+
+        Customer updateCustomer = customer.get();
+
+        updateCustomer.setName(customerRequest.getName());
+        updateCustomer.setAge(customerRequest.getAge());
+        updateCustomer.setEmailId(customerRequest.getEmailId());
+        updateCustomer.setGender(customerRequest.getGender());
+
+        customerRepository.save(updateCustomer);
+
+        CustomerResponse customerResponse = CustomerTransformer.customerToCustomerResponse(updateCustomer);
+
+        return customerResponse;
+
+    }
+
 }

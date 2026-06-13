@@ -45,9 +45,10 @@ public class CutomerController {
         return customerService.getByGenderAndAge(gender, age);
     }
 
-//
-//    @DeleteMapping("/deleteCustomer/{id}")
-//    public void deleteCustomer(@PathVariable("id") int customerID){
-//        customerService.deleteCustomer(customerID);
-//    }
+    @PutMapping("/update/{id}")
+    public CustomerResponse updateCustomer(@RequestBody CustomerRequest customerRequest, @PathVariable int id) throws CustomerNotFound{
+            return customerService.updateCustomer(customerRequest, id);
+    }
+
+
 }
