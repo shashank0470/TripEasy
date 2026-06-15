@@ -108,7 +108,7 @@ public class CustomerService {
         }
 
         customerRepository.deleteById(id);
-
+        bookingRepository.deleteBookingsByCustomerId(id);
 
         return "Customer deleted successfuly";
     }
