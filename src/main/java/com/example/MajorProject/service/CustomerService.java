@@ -5,6 +5,7 @@ import com.example.MajorProject.Dto.response.CustomerResponse;
 import com.example.MajorProject.Enum.Gender;
 import com.example.MajorProject.exception.CustomerNotFound;
 import com.example.MajorProject.model.Customer;
+import com.example.MajorProject.repository.BookingRepository;
 import com.example.MajorProject.repository.CustomerRepository;
 import com.example.MajorProject.transformers.CustomerTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class CustomerService {
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    BookingRepository bookingRepository;
 
     public CustomerResponse addCustomer(CustomerRequest customerRequest){
         //RequestDTO --> Entity(Here we are converting the requestdto to entity )
@@ -96,4 +100,16 @@ public class CustomerService {
 
     }
 
+    public String deleteCustomer(int id) {
+        Optional<Customer> customer = customerRepository.findById(id);
+
+        if(!customer.isPresent()){
+            return ("Customer is not present");
+        }
+
+        customerRepository.deleteById(id);
+
+
+        return "Customer deleted successfuly";
+    }
 }

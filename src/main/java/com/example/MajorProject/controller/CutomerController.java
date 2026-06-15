@@ -50,5 +50,8 @@ public class CutomerController {
             return customerService.updateCustomer(customerRequest, id);
     }
 
-
+    @DeleteMapping("/delete-customer/{id}")
+    public String deleteCustomer(@PathVariable int id){
+        return customerService.deleteCustomer(id);
+    }
 }
