@@ -30,4 +30,10 @@ public class DriverController {
     public DriverResponse deleteDriverById(@PathVariable("driverId") int driverId) throws DriverNotFound{
         return driverService.deleteDriverById(driverId);
     }
+
+    @PutMapping("/update-driver/{id}")
+    public DriverResponse updateDriver(@RequestBody DriverRequest driverRequest, @PathVariable int id) throws DriverNotFound{
+
+        return driverService.updateDriver(driverRequest, id);
+    }
 }
