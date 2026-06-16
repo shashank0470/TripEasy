@@ -53,5 +53,22 @@ public class DriverService {
         return deleteDriverResponse;
     }
 
+    public DriverResponse updateDriver(DriverRequest driverRequest, int id) throws DriverNotFound {
+        Optional<Driver> driver = driverRepository.findById(id);
+
+        if(!driver.isPresent()){
+            throw new DriverNotFound("Driver is not found");
+        }
+
+        Driver savedDriver = driver.get();
+        savedDriver.setName(driverRequest.getName());
+        savedDriver.setAge(driverRequest.getAge());
+        savedDriver.setEmailId(driverRequest.getEmailId());
+        savedDriver.setGender(driverRequest.getGender());
+
+        DriverResponse driverResponse = DriverTransformer.driverToDriverResponse(savedDriver);
+
+        return driverResponse;
+    }
 
 }
