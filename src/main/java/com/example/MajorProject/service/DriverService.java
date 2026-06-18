@@ -66,6 +66,7 @@ public class DriverService {
         savedDriver.setEmailId(driverRequest.getEmailId());
         savedDriver.setGender(driverRequest.getGender());
 
+        driverRepository.save(savedDriver);
         DriverResponse driverResponse = DriverTransformer.driverToDriverResponse(savedDriver);
 
         return driverResponse;

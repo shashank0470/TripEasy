@@ -15,6 +15,7 @@ import com.example.MajorProject.repository.CustomerRepository;
 import com.example.MajorProject.repository.DriverRepository;
 import com.example.MajorProject.transformers.BookingTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,10 @@ public class BookingService {
     @Autowired
     DriverRepository driverRepository;
 
-    public BookingResponse bookCab(BookingRequest bookingRequest, int customerId) throws CustomerNotFound{
+    @Value("${app.mail.from}")
+    private String mailFrom;
+
+    public BookingResponse bookCab(BookingRequest bookingRequest, int customerId) throws CustomerNotFound {
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
         if(optionalCustomer.isEmpty()){
             throw new CustomerNotFound("Customer is not registered");
@@ -69,10 +73,10 @@ public class BookingService {
         return BookingTransformer.bookingToBookingResponse(booked, savedCustomer,savedDriver, availableCab);
     }
 
-    private void sendEmail(Customer customer){
-        String text = "Congrates! " + customer.getName() + " your cab is booked";
+    private void sendEmail(Customer customer) {
+        String text = "Congratulations! " + customer.getName() + ", your cab is booked.";
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("tm4811357@gmail.com");
+        simpleMailMessage.setFrom(mailFrom);
         simpleMailMessage.setTo(customer.getEmailId());
         simpleMailMessage.setSubject("Cab Booked");
         simpleMailMessage.setText(text);

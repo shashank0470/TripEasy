@@ -20,6 +20,7 @@ public class CustomerTransformer {
     // Entity → DTO
     public static CustomerResponse customerToCustomerResponse(Customer customer){
         CustomerResponse customerResponse = CustomerResponse.builder()
+                .customerID(customer.getCustomerID())
                 .name(customer.getName())
                 .age(customer.getAge())
                 .gender(customer.getGender())

@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class CustomerResponse {
+    private Integer customerID;
     private String name;
     private int age;
     private Gender gender;

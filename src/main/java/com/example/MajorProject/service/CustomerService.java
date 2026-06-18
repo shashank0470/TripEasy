@@ -29,12 +29,9 @@ public class CustomerService {
         //RequestDTO --> Entity(Here we are converting the requestdto to entity )
         Customer customer = CustomerTransformer.customerRequestToCustomer(customerRequest);
 
-        Customer saveCustomer =  customerRepository.save(customer);
+        Customer saveCustomer = customerRepository.save(customer);
 
-        //Saved Entity to ResponseDTO
-        CustomerResponse customerResponse = CustomerTransformer.customerToCustomerResponse(customer);
-
-        return customerResponse;
+        return CustomerTransformer.customerToCustomerResponse(saveCustomer);
     }
 
     public CustomerResponse getCustomer(int customerID) throws CustomerNotFound {
@@ -52,8 +49,12 @@ public class CustomerService {
 
 
 
-    public List<Customer> getAllCustomer() {
-        return customerRepository.findAll();
+    public List<CustomerResponse> getAllCustomer() {
+        List<CustomerResponse> customerResponses = new ArrayList<>();
+        for (Customer customer : customerRepository.findAll()) {
+            customerResponses.add(CustomerTransformer.customerToCustomerResponse(customer));
+        }
+        return customerResponses;
     }
 
     public List<CustomerResponse> getByGender(Gender gender) {
@@ -100,16 +101,14 @@ public class CustomerService {
 
     }
 
-    public String deleteCustomer(int id) {
+    public void deleteCustomer(int id) throws CustomerNotFound {
         Optional<Customer> customer = customerRepository.findById(id);
 
-        if(!customer.isPresent()){
-            return ("Customer is not present");
+        if (customer.isEmpty()) {
+            throw new CustomerNotFound("No customer found for id: " + id);
         }
 
         customerRepository.deleteById(id);
         bookingRepository.deleteBookingsByCustomerId(id);
-
-        return "Customer deleted successfuly";
     }
 }
