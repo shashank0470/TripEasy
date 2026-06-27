@@ -1,0 +1,28 @@
+# Copy this file to application.properties and fill in your values.
+# application.properties is gitignored so your secrets stay local.
+
+spring.application.name=MajorProject
+
+# MySQL
+spring.datasource.url=jdbc:mysql://localhost:3306/cab_booking
+spring.datasource.username=root
+spring.datasource.password=your_password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA / Hibernate
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+# Mail (Gmail example — use an app password, not your account password)
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=your_email@gmail.com
+spring.mail.password=your_app_password
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# App mail settings
+app.mail.from=your_email@gmail.com
+
+server.port=8080
