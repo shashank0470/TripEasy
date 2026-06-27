@@ -7,6 +7,8 @@ import com.example.MajorProject.exception.DriverNotFound;
 import com.example.MajorProject.model.Driver;
 import com.example.MajorProject.repository.DriverRepository;
 import com.example.MajorProject.transformers.DriverTransformer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

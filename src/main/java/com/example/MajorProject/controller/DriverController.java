@@ -5,6 +5,8 @@ import com.example.MajorProject.Dto.response.DriverResponse;
 import com.example.MajorProject.common.ApiResponse;
 import com.example.MajorProject.service.DriverService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +17,11 @@ public class DriverController {
     @Autowired
     DriverService driverService;
 
+    Logger log = LoggerFactory.getLogger(DriverController.class);
+
     @PostMapping("/add-driver")
     public ApiResponse<DriverResponse> addDriver(@Valid @RequestBody DriverRequest driverRequest) {
+        log.info("Request Body of driver is recieved from the driver");
         return ApiResponse.success(driverService.addDriver(driverRequest));
     }
 
