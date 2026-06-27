@@ -27,6 +27,7 @@ public class DriverController {
 
     @GetMapping("/get-driver/{driverID}")
     public ApiResponse<DriverResponse> getDriver(@PathVariable("driverID") int driverID) {
+        log.info("Driver id is recieved to check whethet it is present in the database or not");
         return ApiResponse.success(driverService.getDriver(driverID));
     }
 
