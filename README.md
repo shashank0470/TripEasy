@@ -1,4 +1,4 @@
-# Cab Booking API
+# TripEasy
 
 A Spring Boot REST API for cab registration, driver management, and ride booking.
 
