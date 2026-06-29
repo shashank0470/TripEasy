@@ -60,6 +60,7 @@ public class BookingService {
         Booking savedBooking = bookingRepository.save(booked);
 
         availableCab.setAvailable(false);
+        cabRepository.save(availableCab);
         customer.getBooking().add(booked);
 
         Driver driver = driverRepository.getDriverByCabId(availableCab.getCabId());

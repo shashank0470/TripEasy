@@ -17,7 +17,7 @@ public class BookingTransformer {
                 .pickup(bookingRequest.getPickup())
                 .destination(bookingRequest.getDestination())
                 .trip_distance_in_Km(bookingRequest.getTrip_distance_in_Km())
-                .trip_status(TripStatus.IN_PROGRESS)
+                .trip_status(TripStatus.BOOKED)
                 .bill_amount(bookingRequest.getTrip_distance_in_Km()*per_km_rate)
                 .build();
     }
@@ -28,7 +28,7 @@ public class BookingTransformer {
                 .pickup(booking.getPickup())
                 .destination(booking.getDestination())
                 .trip_distance_in_Km(booking.getTrip_distance_in_Km())
-                .trip_status(TripStatus.STARTED)
+                .trip_status(booking.getTrip_status())
                 .bill_amount(booking.getBill_amount())
                 .bookedAt(booking.getBookedAt())
                 .lastUpdateAt(booking.getLastUpdateAt())

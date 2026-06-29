@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -72,6 +74,14 @@ public class DriverService {
         DriverResponse driverResponse = DriverTransformer.driverToDriverResponse(savedDriver);
 
         return driverResponse;
+    }
+
+    public List<DriverResponse> getAllDrivers() {
+        List<DriverResponse> responses = new ArrayList<>();
+        for (Driver driver : driverRepository.findAll()) {
+            responses.add(DriverTransformer.driverToDriverResponse(driver));
+        }
+        return responses;
     }
 
 }

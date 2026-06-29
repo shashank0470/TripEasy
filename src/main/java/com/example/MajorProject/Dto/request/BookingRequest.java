@@ -23,4 +23,5 @@ public class BookingRequest {
 
     @Positive(message = "Trip distance must be greater than 0")
     private double trip_distance_in_Km;
+
 }

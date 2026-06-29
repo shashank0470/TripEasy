@@ -1,8 +1,8 @@
 package com.example.MajorProject.Enum;
 
 public enum TripStatus {
-    IN_PROGRESS,
+    BOOKED,
     COMPLETED,
-    STARTED,
-    ARRIVED
+    CANCELLED
+
 }

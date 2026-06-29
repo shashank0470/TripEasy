@@ -42,6 +42,29 @@ A Spring Boot REST API for cab registration, driver management, and ride booking
 
    The API starts at `http://localhost:8080`.
 
+## Frontend (React)
+
+Simple dashboard to test all API flows visually.
+
+1. **Start the backend first** (port 8080)
+
+2. **Install and run frontend**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+3. Open **http://localhost:5173**
+
+### Suggested test flow in the UI
+
+1. **Customers** tab → add a customer  
+2. **Drivers** tab → add a driver  
+3. **Cabs** tab → register a cab for that driver  
+4. **Booking** tab → book a cab for the customer  
+5. Check the **API Response** panel on the right for the full JSON  
+
 ## API response format
 
 All endpoints return a consistent wrapper:
